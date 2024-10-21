@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 /**
- * main - Entry point
+ * main - Entry point of the program
  *
- * Description: 'the program's description'
- * @parameter: describe the parameter
+ * Description: This function prints a specific string
+ *              followed by a new line.
  *
  * Return: Always 0 (Success)
  */
