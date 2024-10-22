@@ -1,4 +1,5 @@
 #include <unistd.h>
+#include <stdio.h>
 
 /**
  * main - Entry point of the program
@@ -14,7 +15,7 @@ for (letter = 'a'; letter <= 'z'; letter++)
 {
 putchar(letter);
 }
-putchar('\n'); /* Print a new line */
+putchar('\n');
 
 return (0);
 }
