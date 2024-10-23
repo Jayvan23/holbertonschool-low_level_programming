@@ -23,5 +23,5 @@ digit = last_digit + '0';
 
 write(1, &digit, 1);
 
-return last_digit;
+return (last_digit);
 }
