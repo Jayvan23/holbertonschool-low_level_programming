@@ -23,7 +23,8 @@ num /= 10;
 }
 }
 
-for (int i = 0; i < length / 2; i++) {
+for (int i = 0; i < length / 2; i++)
+{
 char temp = buffer[i];
 buffer[i] = buffer[length - i - 1];
 buffer[length - i - 1] = temp;
