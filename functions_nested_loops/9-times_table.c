@@ -14,11 +14,13 @@ void times_table(void)
 		if (product < 10)
 		{
 			_putchar('0' + product);
+			/*_putchar(' ');*/
 		}
 		else
 		{
 			_putchar('0' + (product / 10));
 			_putchar('0' + (product % 10));
+			_putchar(' ');
 		}
 
 		if (j < 9)
