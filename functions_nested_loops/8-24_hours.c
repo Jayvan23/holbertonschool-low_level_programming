@@ -20,7 +20,7 @@ buffer[2] = ':';
 buffer[3] = (minute / 10) + '0';
 buffer[4] = (minute % 10) + '0';
 buffer[5] = '\n';
-            
+
 write(1, buffer, 6);
 }
 }
