@@ -1,34 +1,34 @@
-#include "main.h"
-#include <stdio.h>
+#include <unistd.h>
 
 /**
- * times_table - prints the 9 times table, starting with 0
- *
- * Return: void
+ * print_number - Writes an integer to stdout.
+ * @num: The integer to print.
  */
 
-void times_table(void)
+void print_number(int num)
 {
-int i, j, product;
+char buffer[20];
+int length = 0;
 
-for (i = 0; i <= 9; i++)
+if (num == 0)
 {
-for (j = 0; j <= 9; j++)
-{
-product = i * j;
-if (j == 0) {
-printf("%d", product);
+buffer[length++] = '0';
 }
 else
 {
-printf(", ");
-if (product < 10)
+while (num > 0)
 {
-printf(" ");
+buffer[length++] = (num % 10) + '0';
+num /= 10;
 }
-printf("%d", product);
 }
+
+for (int i = 0; i < length / 2; i++) {
+char temp = buffer[i];
+buffer[i] = buffer[length - i - 1];
+buffer[length - i - 1] = temp;
 }
-printf("\n");
-}
+
+buffer[length++] = '\0';
+write(1, buffer, length);
 }
