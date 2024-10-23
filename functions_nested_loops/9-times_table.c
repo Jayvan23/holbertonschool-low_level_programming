@@ -1,35 +1,34 @@
 #include <unistd.h>
 
 /**
- * print_number - Writes an integer to stdout.
- * @num: The integer to print.
+ * times_table - Prints the 9 times table, starting with 0.
+ *
+ * This function prints the multiplication table for the numbers
+ * 0 through 9, formatted in a grid with each number separated by
+ * a comma and a space.
  */
 
-void print_number(int num)
+void times_table(void)
 {
-char buffer[20];
-int length = 0;
+    int i, j;
 
-if (num == 0)
-{
-buffer[length++] = '0';
-}
-else
-{
-while (num > 0)
-{
-buffer[length++] = (num % 10) + '0';
-num /= 10;
-}
-}
-
-for (i = 0; i < length / 2; i++)
-{
-char temp = buffer[i];
-buffer[i] = buffer[length - i - 1];
-buffer[length - i - 1] = temp;
+    for (i = 0; i < 10; i++)
+    {
+        for (j = 0; j < 10; j++)
+	{
+            int product = i * j;
+            print_number(product);
+            if (j < 9) {
+                _putchar(',');
+                _putchar(' ');
+            }
+        }
+        _putchar('\n');
+    }
 }
 
-buffer[length++] = '\0';
-write(1, buffer, length);
+int main(void)
+{
+    times_table();
+    return (0);
 }
