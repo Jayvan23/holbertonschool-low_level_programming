@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 /**
- * main - check the code.
+ * _slower - checks for lower case characters
+ * @c: parameter to identify lower cases
  *
  * Return: Always 0.
  */
