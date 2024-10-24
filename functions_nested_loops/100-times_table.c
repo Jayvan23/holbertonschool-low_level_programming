@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "main.h"
 
 void print_times_table(int n)
 {
@@ -7,17 +6,32 @@ void print_times_table(int n)
     {
         return;
     }
-
-    for (int i = 0; i <= n; i++)
+    
+   for (int i = 0; i <= n; i++)
     {
-        for (int j = 0; j <= n; j++)
+       for (int j = 0; j <= n; j++)
 	{
-            if (j != 0)
-	    {
-                printf(", ");
+            int product = i * j;
+            if (j > 0) {
+                putchar(' ');
             }
-            printf("%3d", i * j);
+            if (product < 10)
+	    {
+                putchar('0' + product);
+            }
+	    else 
+		    if (product < 100)
+		    {
+                putchar('0' + (product / 10));
+                putchar('0' + (product % 10));
+            } 
+	    else 
+	    {
+                putchar('0' + (product / 100));
+                putchar('0' + ((product / 10) % 10));
+                putchar('0' + (product % 10));
+            }
         }
-        printf("\n");
+        putchar('\n');
     }
 }
