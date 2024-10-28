@@ -5,14 +5,15 @@
  *
  * Return: void.
  */
+
 void print_numbers(void)
 {
-	char numbers[] = "0123456789";
+	
 	int i;
 	
-	for (i = 0; i < 10; i++)
+	for (i = 48; i < 57; i++)
 	{
-		_putchar(numbers[i]);
+		_putchar(i);
 	}
-	_putchar('\n');
+	_putchar(10);
 }
