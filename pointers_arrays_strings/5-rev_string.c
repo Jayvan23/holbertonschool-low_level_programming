@@ -1,4 +1,4 @@
-#include <string.h>
+#include <unistd.h>
 
 /**
  * rev_string - Reverses a string in place.
@@ -7,9 +7,16 @@
 
 void rev_string(char *s)
 {
-	int length = strlen(s);
 	int i;
+	int length = 0;
+	char *start = s;
 	char temp;
+
+	while (*start)
+	{
+		length++;
+		start++;
+	}
 
 	for (i = 0; i < length / 2; i++)
 	{
