@@ -8,9 +8,9 @@
  */
 char *cap_string(char *str)
 {
-	int j;
 	int i = 0;
 	int capitalize = 1;
+	int j;
 	char separators[] = " \t\n,;.!?\"(){}";
 
 	while (str[i] != '\0')
