@@ -10,12 +10,16 @@ void print_rev(char *s)
 	char *start = s;
 	int length = 0;
 
-	while (*start++)
-		length++;
-
-	while (length-- > 0)
+	while (*start)
 	{
-		write(1, --start, 1);
+		length++;
+		start++;
+	}
+
+	while (length > 0)
+	{
+		write(1, &s[length - 1], 1);
+		length--;
 	}
 	write(1, "\n", 1);
 }
