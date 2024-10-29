@@ -36,13 +36,16 @@ int _atoi(char *s)
 
 			if (num > 2147483647 && sign == 1)
 				return (-1);
-			if (num > -2147483648U && sign == -1)
+			if (num > 2147483648U && sign == -1)
 				return (0);
 		}
 		else if (started)
 			break;
 		s++;
 	}
+
+	if (sign == -1 && num == 2147483648U)
+		return (-2147483648);
 
 	return (sign) * (int)num;
 }
