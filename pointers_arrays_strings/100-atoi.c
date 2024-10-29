@@ -47,5 +47,5 @@ int _atoi(char *s)
 	if (sign == -1 && num == 2147483648U)
 		return (-2147483648);
 
-	return (sign) * (int)num;
+	return (sign * (int)num);
 }
