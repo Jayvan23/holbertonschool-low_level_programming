@@ -20,6 +20,10 @@ char *cap_string(char *str)
 			str[i] -= 32;
 			capitalize = 0;
 		}
+		else if (!capitalize && (str[i] >= 'A' && str[i] <= 'Z'))
+		{
+			str[i] += 32;
+		}
 
 		for (j = 0; separators[j] != '\0'; j++)
 		{
@@ -30,8 +34,13 @@ char *cap_string(char *str)
 			}
 		}
 
+		if (str[i] != ' ')
+		{
+			capitalize = 0;
+		}
+
 		i++;
 	}
 
-	return str;
+	return (str);
 }
