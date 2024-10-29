@@ -27,16 +27,19 @@ char *cap_string(char *str)
             str[i] == '!' || str[i] == '?' || str[i] == '"' ||
             str[i] == '(' || str[i] == ')' || str[i] == '{' || str[i] == '}')
         {
-		 i++;
-            if (str[i] >= 'a' && str[i] <= 'z')
-            {
-                str[i] -= 32;
-            }
+		capitalize = 1;
         }
         else
         {
-            i++;
+            capitalize = 0;
         }
+
+        i++;
+    }
+
+    if (str[0] >= 'a' && str[0] <= 'z')
+    {
+        str[0] -= 32;
     }
 
     return str;
