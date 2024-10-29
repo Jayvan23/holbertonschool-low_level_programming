@@ -17,12 +17,12 @@ char *_strncpy(char *dest, char *src, int n)
 		*ptr++ = *src++;
 		n--;
 	}
-	
+
 	while (n > 0)
 	{
 		*ptr++ = '\0';
 		n--;
 	}
-	
+
 	return (dest);
 }
