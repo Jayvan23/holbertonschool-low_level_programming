@@ -34,7 +34,7 @@ char *cap_string(char *str)
 			}
 		}
 
-		if (str[i] != ' ')
+		if (str[i] != ' ' && str[i] != '\0')
 		{
 			capitalize = 0;
 		}
