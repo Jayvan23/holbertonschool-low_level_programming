@@ -2,7 +2,7 @@
 
 /**
  * print_diagsums - Computes the sums of the two diagonals of a square matrix.
- * @a: A pointer to the first element of the square matrix (treated as a 1D array).
+ * @a: A pointer to the first element of the square matrix (treated as ID).
  * @size: The dimension of the matrix (number of rows/columns).
  *
  * This function calculates the sums of the primary and secondary diagonals
