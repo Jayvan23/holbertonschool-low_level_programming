@@ -8,19 +8,17 @@
  * @argv: An array of strings representing the command-line arguments.
  *
  * Description:
- * This program adds all positive numbers passed as command-line arguments
- * and prints the sum. If no arguments are passed, it prints 0. If any
- * argument is invalid (contains non-digit characters), the program prints
- * "Error" and returns 1.
+ * This program adds positive numbers passed as arguments and prints the
+ * result. If the program does not receive any arguments, it prints 0.
+ * If any argument contains non-digit characters, it prints "Error" and
+ * returns 1.
  *
- * Return:
- * 0 on success (if all arguments are valid and the sum is calculated),
- * 1 if any argument is invalid (non-digit characters).
+ * Return: 0 if successful, 1 if there is an error (non-digit argument).
  */
-
 int main(int argc, char *argv[])
 {
 	int sum = 0;
+	int i, j;
 
 	if (argc == 1)
 	{
@@ -28,9 +26,9 @@ int main(int argc, char *argv[])
 		return (0);
 	}
 
-	for (int i = 1; i < argc; i++)
+	for (i = 1; i < argc; i++)
 	{
-		for (int j = 0; argv[i][j] != '\0'; j++)
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
 			if (!isdigit(argv[i][j]))
 			{
@@ -38,10 +36,10 @@ int main(int argc, char *argv[])
 				return (1);
 			}
 		}
-
 		sum += atoi(argv[i]);
 	}
 
 	printf("%d\n", sum);
+
 	return (0);
 }
