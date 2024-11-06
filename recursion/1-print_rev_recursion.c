@@ -1,12 +1,13 @@
 #include "main.h"
-#include <stdio.h>
+#include <unistd.h>
 
 /**
- * _print_rev_recursion - Prints a string in reverse using recursion.
+ * _print_rev_recursion - Prints a string in reverse.
  * @s: The string to be printed in reverse.
  *
- * This function checks if the string is not empty and prints each character
- * recursively from the end to the beginning.
+ * Description: This function prints each character of the string
+ *              in reverse order using recursion. It stops when
+ *              the null terminator is reached.
  */
 void _print_rev_recursion(char *s)
 {
@@ -14,6 +15,7 @@ void _print_rev_recursion(char *s)
 	{
 		return;
 	}
+
 	_print_rev_recursion(s + 1);
-	putchar(*s);
+	write(1, s, 1);
 }
