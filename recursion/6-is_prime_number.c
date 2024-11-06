@@ -1,35 +1,38 @@
 #include "main.h"
 
 /**
- * _sqrt_recursion - Returns the natural square root of a number.
- * @n: The number to calculate the square root of.
+ * is_prime_number - Checks if a number is prime.
+ * @n: The number to check.
  *
- * Return: The natural square root of `n`, or -1 if `n` does not have
- *         a natural square root.
+ * Return: 1 if n is prime, otherwise 0.
+ *
+ * Description: This function checks if the input number `n` is a prime
+ * number using recursion. A prime number is a number greater than 1 that
+ * is only divisible by 1 and itself. The function returns 1 if the number
+ * is prime and 0 otherwise.
  */
-int _sqrt_recursion(int n)
+int is_prime_number(int n)
 {
-	if (n < 0)
-		return (-1);
+	if (n <= 1)
+		return (0);
 
-	return (_sqrt_helper(n, 1));
+	return (check_prime(n, 2));
 }
 
 /**
- * _sqrt_helper - Helper function to compute the square root recursively.
- * @n: The number to calculate the square root of.
- * @guess: The current guess for the square root.
+ * check_prime - Recursively checks if a number is divisible by any number
+ *               from 2 up to the square root of the number.
+ * @n: The number to check.
+ * @i: The current divisor to check against n.
  *
- * Return: The natural square root of `n`, or -1 if `n` does not have
- *         a natural square root.
+ * Return: 1 if n is prime, otherwise 0.
  */
-int _sqrt_helper(int n, int guess)
+int check_prime(int n, int i)
 {
-	if (guess * guess > n)
-		return (-1);
+	if (i * i > n)
+		return (1);
+	if (n % i == 0)
+		return (0);
 
-	if (guess * guess == n)
-		return (guess);
-
-	return (_sqrt_helper(n, guess + 1));
+	return (check_prime(n, i + 1));
 }
