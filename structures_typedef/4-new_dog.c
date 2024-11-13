@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "dog.h"
@@ -10,33 +9,41 @@
  * @owner: The owner of the new dog.
  *
  * Return: A pointer to the new dog (dog_t), or NULL if it fails.
+ *
+ * Description:This function creates a new dog by dynamically allocating memory
+ * for a `dog_t` structure and storing copies of the `name` and `owner` strings
+ * If any memory allocation fails, the function frees any previously allocated
+ * memory and returns NULL.
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *new_dog;
+	dog_t *d;
+	int name_len, owner_len;
 
-	new_dog = malloc(sizeof(dog_t));
-	if (new_dog == NULL)
+	d = malloc(sizeof(dog_t));
+	if (d == NULL)
 		return (NULL);
 
-	new_dog->name = malloc(strlen(name) + 1);
-	if (new_dog->name == NULL)
+	name_len = strlen(name) + 1;
+	d->name = malloc(name_len);
+	if (d->name == NULL)
 	{
-		free(new_dog);
+		free(d);
 		return (NULL);
 	}
-	strcpy(new_dog->name, name);
 
-	new_dog->owner = malloc(strlen(owner) + 1);
-	if (new_dog->owner == NULL)
-	{
-		free(new_dog->name);
-		free(new_dog);
-		return (NULL);
-	}
-	strcpy(new_dog->owner, owner);
+	owner_len = strlen(owner) + 1;
+		d->owner = malloc(owner_len);
+		if (d->owner == NULL)
+		{
+			free(d->name);
+			free(d);
+			return (NULL);
+		}
 
-	new_dog->age = age;
+		strcpy(d->name, name);
+		d->age = age;
+		strcpy(d->owner, owner);
 
-	return (new_dog);
+		return (d);
 }
