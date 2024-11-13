@@ -1,49 +1,58 @@
-#include <stdlib.h>
-#include <string.h>
 #include "dog.h"
-
+#include <stdlib.h>
 /**
- * new_dog - Creates a new dog.
- * @name: The name of the new dog.
- * @age: The age of the new dog.
- * @owner: The owner of the new dog.
+ * new_dog -  creates a new dog.
  *
- * Return: A pointer to the new dog (dog_t), or 0 if it fails.
  *
- * Description:This function creates a new dog by dynamically allocating memory
- * for a `dog_t` structure and storing copies of the `name` and `owner` strings
- * If any memory allocation fails, the function frees any previously allocated
- * memory and returns 0.
+ * @name: char type
+ *
+ * @age: float type
+ *
+ * @owner: char type
+ *
+ * Return: Pointer to struct
  */
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	dog_t *doggo;
+	dog_t *newDog;
+	int length1, length2, i, j;
 
-	if (name == NULL || age < 0 || owner == NULL)
+	length1 = 0, length2 = 0;
+	newDog = malloc(sizeof(struct dog));
+
+	if (newDog == NULL)
 		return (NULL);
 
-	doggo = malloc(sizeof(dog_t));
-	if (doggo == NULL)
-		return (NULL);
+	while (name[length1++])
+		;
+	while (owner[length2++])
+		;
 
-	doggo->name = malloc(sizeof(char) * (_strlen(name) + 1));
-	if (doggo->name == NULL)
+	newDog->name = malloc(sizeof(newDog->name) * length1);
+
+	if (newDog->name == NULL)
 	{
-		free(doggo);
+		free(newDog);
 		return (NULL);
 	}
 
-	doggo->owner = malloc(sizeof(char) * (_strlen(owner) + 1));
-	if (doggo->owner == NULL)
+	for (i = 0; i < length1; i++)
+		newDog->name[i] = name[i];
+
+	newDog->age = age;
+
+
+	newDog->owner = malloc(sizeof(newDog->owner) * length2);
+
+	if (newDog->owner == NULL)
 	{
-		free(doggo->name);
-		free(doggo);
+		free(newDog->name);
+		free(newDog);
 		return (NULL);
 	}
+	for (j = 0; j < length2; j++)
+		newDog->owner[j] = owner[j];
 
-	doggo->name = _strcopy(doggo->name, name);
-	doggo->age = age;
-	doggo->owner = _strcopy(doggo->owner, owner);
-
-	return (doggo);
+	return (newDog);
 }
