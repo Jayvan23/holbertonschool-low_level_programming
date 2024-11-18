@@ -1,42 +1,40 @@
+#include "3-calc.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "3-calc.h"
 
 /**
- * main - Performs simple operations based on user input.
- * @argc: Argument count.
- * @argv: Argument vector.
- * Return: 0 on success.
- */
-int main(int argc, char *argv[])
+* main - Prints calculator result
+*
+* @argc: int of commandline args
+*
+* @argv: 2-d array of commandline args
+*
+* Return: 0 success, 98 for argc error, 100 if div 0
+*/
+
+int main(int argc, char **argv)
 {
-    int num1, num2;
-    int (*operation)(int, int);
+	int (*operator_function)(int, int), num1, num2;
 
-    if (argc != 4)
-    {
-        printf("Error\n");
-        exit(98);
-    }
+	if (argc != 4)
+		printf("Error\n"), exit(98);
 
-    num1 = atoi(argv[1]);
-    num2 = atoi(argv[3]);
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
 
-    operation = get_op_func(argv[2]);
+	operator_function = get_op_func(argv[2]);
+	if (!operator_function)
+	{
+		printf("Error\n");
+		exit(99);
+	}
 
-    if (operation == NULL)
-    {
-        printf("Error\n");
-        exit(99);
-    }
+	if (!num2 && (argv[2][0] == '/' || argv[2][0] == '%'))
+	{
+		printf("Error\n");
+		exit(100);
+	}
 
-    if ((*argv[2] == '/' || *argv[2] == '%') && num2 == 0)
-    {
-        printf("Error\n");
-        exit(100);
-    }
-
-    printf("%d\n", operation(num1, num2));
-
-    return (0);
+	printf("%d\n", operator_function(num1, num2));
+	return (0);
 }
