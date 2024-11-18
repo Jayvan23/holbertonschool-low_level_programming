@@ -6,33 +6,38 @@
  * main - Performs simple operations based on user input.
  * @argc: The number of arguments passed to the program.
  * @argv: An array of strings representing the arguments.
- * 
+ *
  * Return: 0 on success.
- *         Exits with status 98 if the number of arguments is incorrect.
- *         Exits with status 99 if the operator is invalid or not a single character.
- *         Exits with status 100 if there is an attempt to divide or modulo by zero.
+ *Exits with status 98 if the number of arguments is incorrect.
+ *Exits with status 99 if the operator is invalid or not a single character.
+ *Exits with status 100 if there is an attempt to divide or modulo by zero.
  */
 int main(int argc, char *argv[])
 {
-    int num1, num2;
-    int (*operation)(int, int);
+	int num1, num2;
+	int (*operation)(int, int);
+	int valid_operator;
 
-    if (argc != 4 || argv[2][1] != '\0' || (operation = get_op_func(argv[2])) == NULL)
-    {
-        printf("Error\n");
-        exit(argc != 4 ? 98 : 99);
-    }
+	valid_operator = (argv[2][1] == '\0' && get_op_func(argv[2]) != NULL);
 
-    num1 = atoi(argv[1]);
-    num2 = atoi(argv[3]);
+	if (argc != 4 || !valid_operator)
+	{
+		printf("Error\n");
+		exit(argc != 4 ? 98 : 99);
+	}
 
-    if ((*argv[2] == '/' || *argv[2] == '%') && num2 == 0)
-    {
-        printf("Error\n");
-        exit(100);
-    }
+	operation = get_op_func(argv[2]);
 
-    printf("%d\n", operation(num1, num2));
+	num1 = atoi(argv[1]);
+	num2 = atoi(argv[3]);
 
-    return (0);
+	if ((*argv[2] == '/' || *argv[2] == '%') && num2 == 0)
+	{
+		printf("Error\n");
+		exit(100);
+	}
+
+	printf("%d\n", operation(num1, num2));
+
+	return (0);
 }
