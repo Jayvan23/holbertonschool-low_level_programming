@@ -18,7 +18,7 @@ int (*get_op_func(char *s))(int, int)
     int i = 0;
 
     if (s[1] != '\0')
-        return NULL;
+        return (NULL);
 
     while (ops[i].op != NULL)
     {
@@ -27,5 +27,5 @@ int (*get_op_func(char *s))(int, int)
         i++;
     }
 
-    return NULL;
+    return (NULL);
 }
