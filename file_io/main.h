@@ -1,22 +1,17 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stddef.h>
+#include <fcntl.h>
 #include <unistd.h>
-#include <elf.h>
+#include <string.h>
 
 /**
- * read_textfile - Reads a text file and prints it to the POSIX standard output
- * @filename: The name of the file
- * @letters: The number of letters it should read and print
+ * append_text_to_file - Appends text at the end of a file.
+ * @filename: Name of the file.
+ * @text_content: Null-terminated string to append to the file.
  *
- * Return: The actual number of letters it could read and print,
- *         or 0 if an error occurred.
+ * Return: 1 on success, -1 on failure.
  */
-ssize_t read_textfile(const char *filename, size_t letters);
-int create_file(const char *filename, char *text_content);
 int append_text_to_file(const char *filename, char *text_content);
-void print_error(const char *message)
-void print_hex(unsigned char *data, size_t length)
 
 #endif
