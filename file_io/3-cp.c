@@ -6,15 +6,12 @@
 #include <sys/stat.h>
 
 /**
- * main - Copies content of file to another
+ * main - Copies the content of one file to another.
+ * @argc: Number of arguments passed to the program.
+ * @argv: Array of arguments passed to the program.
  *
- * @argc: int
- *
- * @argv: double pointer
- *
- * Return: Copy of file
+ * Return: 0 on success, exit codes on error.
  */
-
 int main(int argc, char **argv)
 {
 	int fd, fd2, filecheck;
