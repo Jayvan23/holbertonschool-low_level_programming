@@ -4,42 +4,39 @@
  * print_times_table - Prints the n times table, starting with 0.
  * @n: The number for which the times table is printed.
  *
- * Description: If n is greater than 15 or less than 0, the function does nothing.
+ * Description:If n is greater than 15 or less than 0,the function does nothing
  *              The table is formatted with proper spacing.
  */
 void print_times_table(int n)
 {
-    int i, j, result;
+	int i, j, result;
 
-    if (n < 0 || n > 15)
-        return;
+	if (n < 0 || n > 15)
+		return;
 
-    for (i = 0; i <= n; i++)
-    {
-        for (j = 0; j <= n; j++)
-        {
-            result = i * j;
+	for (i = 0; i <= n; i++)
+	{
+		for (j = 0; j <= n; j++)
+		{
+			result = i * j;
 
-            /* Print comma and spacing for all columns except the first */
-            if (j != 0)
-            {
-                _putchar(',');
-                _putchar(' ');
+			if (j != 0)
+			{
+				_putchar(',');
+				_putchar(' ');
 
-                /* Add spacing for alignment */
-                if (result < 10)
-                    _putchar(' '), _putchar(' ');
-                else if (result < 100)
-                    _putchar(' ');
-            }
+				if (result < 10)
+					_putchar(' '), _putchar(' ');
+				else if (result < 100)
+					_putchar(' ');
+			}
 
-            /* Print the result */
-            if (result >= 100)
-                _putchar((result / 100) + '0'), _putchar(((result / 10) % 10) + '0');
-            else if (result >= 10)
-                _putchar((result / 10) + '0');
-            _putchar((result % 10) + '0');
-        }
-        _putchar('\n');
-    }
+			if (result >= 100)
+				_putchar((result / 100) + '0'), _putchar(((result / 10) % 10) + '0');
+			else if (result >= 10)
+				_putchar((result / 10) + '0');
+			_putchar((result % 10) + '0');
+		}
+		_putchar('\n');
+	}
 }
