@@ -1,25 +1,27 @@
 #include <stdio.h>
+
 /**
- * main - prints a fibonacci 50 times
- * Return: Always (0)
+ * main - Prints the first 98 Fibonacci numbers, starting with 1 and 2.
+ *
+ * Return: Always 0 (Success).
  */
 int main(void)
 {
-	unsigned long int i, a = 1, b = 2, suma;
+    int count;
+    unsigned long fib1 = 1, fib2 = 2, next;
 
-	for (i = 1; i <= 98; i++)
-	{
-		if (i != 98)
-		{
-			printf("%lu, ", a);
-			suma = a + b;
-			a = b;
-			b = suma;
-		}
-		else
-		{
-			printf("%lu\n", a);
-		}
-	}
-	return (0);
+    printf("%lu, %lu", fib1, fib2);
+
+    for (count = 2; count < 98; count++)
+    {
+        next = fib1 + fib2;
+        printf(", %lu", next);
+
+        /* Update fib1 and fib2 for the next iteration */
+        fib1 = fib2;
+        fib2 = next;
+    }
+
+    printf("\n");
+    return (0);
 }
