@@ -7,7 +7,7 @@
  */
 void print_single_number(int result, int is_first)
 {
-	if (!is_first)
+    if (!is_first)
     {
         _putchar(',');
         _putchar(' ');
@@ -15,7 +15,8 @@ void print_single_number(int result, int is_first)
 
     if (result < 10)
     {
-        _putchar(' ');
+        if (!is_first)
+            _putchar(' ');
         _putchar(' ');
         _putchar('0' + result);
     }
