@@ -1,2 +1,10 @@
 #!/bin/bash
-gcc -c $CFILE
+
+if [ -z "$CFILE" ]; then
+  echo "Error: CFILE is not set."
+  exit 1
+fi
+
+OUTPUT="${CFILE%.c}.o"
+
+gcc -c "$CFILE" -o "$OUTPUT"
