@@ -9,9 +9,8 @@
  */
 int _atoi(char *s)
 {
-    int sign = 1;
-    unsigned int result = 0;
-    int found_digit = 0;
+    int sign = 1, found_digit = 0;
+    int result = 0, prev_result;
 
     while (*s)
     {
@@ -20,17 +19,16 @@ int _atoi(char *s)
         else if (*s >= '0' && *s <= '9')
         {
             found_digit = 1;
-            if (result > (unsigned int)INT_MAX / 10 ||
-                (result == (unsigned int)INT_MAX / 10 && (*s - '0') > (unsigned int)INT_MAX % 10))
-            {
-                return (sign == 1) ? INT_MAX : INT_MIN;
-            }
+            prev_result = result;
             result = result * 10 + (*s - '0');
+
+            if (prev_result != result / 10)  
+                return (sign == 1) ? INT_MAX : INT_MIN;
         }
         else if (found_digit)
             break;
         s++;
     }
 
-    return (int)(result * sign);
+    return result * sign;
 }
