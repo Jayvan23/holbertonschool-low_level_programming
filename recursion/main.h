@@ -13,5 +13,6 @@ int _pow_recursion(int x, int y);
 int _sqrt_recursion(int n);
 int _putchar(char c);
 int helper_sqrt(int n, int i);
+int check_prime(int n, int i);
 
 #endif
