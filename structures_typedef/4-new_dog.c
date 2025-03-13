@@ -1,39 +1,52 @@
 #include <stdlib.h>
-#include <string.h>
 #include "dog.h"
+#include "_putchar.h"
 
 /**
  * new_dog - Creates a new dog.
  * @name: Name of the dog.
  * @age: Age of the dog.
  * @owner: Owner of the dog.
- *
  * Return: Pointer to the new dog or NULL if it fails.
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
-    dog_t *new_dog;
+    dog_t *dog;
+    int i, j, k;
+    char *dog_name, *dog_owner;
 
-    new_dog = malloc(sizeof(dog_t));
-    if (new_dog == NULL)
+    dog = malloc(sizeof(dog_t));
+    if (dog == NULL)
         return (NULL);
 
-    new_dog->name = strdup(name);
-    if (new_dog->name == NULL)
+    /* Copy name */
+    for (i = 0; name[i] != '\0'; i++)
+        ;
+    dog_name = malloc(sizeof(char) * (i + 1));
+    if (dog_name == NULL)
     {
-        free(new_dog);
+        free(dog);
         return (NULL);
     }
+    for (j = 0; j <= i; j++)
+        dog_name[j] = name[j];
 
-    new_dog->owner = strdup(owner);
-    if (new_dog->owner == NULL)
+    /* Copy owner */
+    for (i = 0; owner[i] != '\0'; i++)
+        ;
+    dog_owner = malloc(sizeof(char) * (i + 1));
+    if (dog_owner == NULL)
     {
-        free(new_dog->name);
-        free(new_dog);
+        free(dog_name);
+        free(dog);
         return (NULL);
     }
+    for (k = 0; k <= i; k++)
+        dog_owner[k] = owner[k];
 
-    new_dog->age = age;
+    dog->name = dog_name;
+    dog->age = age;
+    dog->owner = dog_owner;
 
-    return (new_dog);
+    return (dog);
 }
