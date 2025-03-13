@@ -1,5 +1,23 @@
 #include <stdlib.h>
-#include <string.h>
+
+/**
+ * _strlen - Calculates the length of a string
+ * @str: The string
+ *
+ * Return: Length of the string
+ */
+unsigned int _strlen(char *str)
+{
+    unsigned int len = 0;
+
+    if (str == NULL)
+        return (0);
+
+    while (str[len] != '\0')
+        len++;
+
+    return (len);
+}
 
 /**
  * string_nconcat - Concatenates two strings up to `n` bytes of `s2`
@@ -11,13 +29,11 @@
  */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-    unsigned int len1 = 0, len2 = 0, i, j;
+    unsigned int len1, len2, i, j;
     char *new_str;
 
-    if (s1 != NULL)
-        len1 = strlen(s1);
-    if (s2 != NULL)
-        len2 = strlen(s2);
+    len1 = _strlen(s1);
+    len2 = _strlen(s2);
 
     if (n >= len2)
         n = len2;
