@@ -91,7 +91,11 @@ void print_elf_header(void *header, int class)
         printf("ELF Header:\n");
         printf("  Magic:   ");
         for (i = 0; i < EI_NIDENT; i++)
-            printf("%02x ", elf64_header->e_ident[i]);
+        {
+            printf("%02x", elf64_header->e_ident[i]);
+            if (i != EI_NIDENT - 1)
+                printf(" ");
+        }
         printf("\n");
 
         printf("  Class:                             ELF64\n");
@@ -140,7 +144,11 @@ void print_elf_header(void *header, int class)
         printf("ELF Header:\n");
         printf("  Magic:   ");
         for (i = 0; i < EI_NIDENT; i++)
-            printf("%02x ", elf32_header->e_ident[i]);
+        {
+            printf("%02x", elf32_header->e_ident[i]);
+            if (i != EI_NIDENT - 1)
+                printf(" ");
+        }
         printf("\n");
 
         printf("  Class:                             ELF32\n");
