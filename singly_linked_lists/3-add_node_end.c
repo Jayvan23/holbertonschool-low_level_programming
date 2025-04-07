@@ -3,40 +3,45 @@
 /**
  * add_node_end - Adds a new node at the end of a list_t list
  * @head: Double pointer to the head of the list
- * @str: String to add
+ * @str: String to duplicate and store in the new node
  *
  * Return: Address of the new element, or NULL if it failed
  */
 list_t *add_node_end(list_t **head, const char *str)
 {
-    list_t *new_node, *temp;
-    char *dup_str;
+	list_t *new_node, *temp;
+	char *dup_str;
+	unsigned int len = 0;
 
-    new_node = malloc(sizeof(list_t));
-    if (!new_node)
-        return (NULL);
+	new_node = malloc(sizeof(list_t));
+	if (!new_node)
+		return (NULL);
 
-    dup_str = strdup(str);
-    if (!dup_str)
-    {
-        free(new_node);
-        return (NULL);
-    }
+	dup_str = strdup(str);
+	if (!dup_str)
+	{
+		free(new_node);
+		return (NULL);
+	}
 
-    new_node->str = dup_str;
-    new_node->len = strlen(dup_str);
-    new_node->next = NULL;
+	while (str[len])
+		len++;
 
-    if (!*head)
-    {
-        *head = new_node;
-        return (new_node);
-    }
+	new_node->str = dup_str;
+	new_node->len = len;
+	new_node->next = NULL;
 
-    temp = *head;
-    while (temp->next)
-        temp = temp->next;
+	if (*head == NULL)
+	{
+		*head = new_node;
+	}
+	else
+	{
+		temp = *head;
+		while (temp->next)
+			temp = temp->next;
+		temp->next = new_node;
+	}
 
-    temp->next = new_node;
-    return (new_node);
+	return (new_node);
 }
