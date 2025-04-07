@@ -1,85 +1,9 @@
 #include <stdio.h>
-#include <elf.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <stdlib.h>
-
-void print_elf_header(void *header, int class);
-
-int main(int argc, char **argv)
-{
-    int fd;
-    ssize_t nread;
-    void *header;
-    int class;
-
-    if (argc != 2)
-    {
-        dprintf(STDERR_FILENO, "Usage: %s elf_filename\n", argv[0]);
-        exit(98);
-    }
-
-    fd = open(argv[1], O_RDONLY);
-    if (fd == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't open file %s\n", argv[1]);
-        exit(98);
-    }
-
-    header = malloc(sizeof(Elf64_Ehdr));
-    if (header == NULL)
-    {
-        dprintf(STDERR_FILENO, "Error: Memory allocation failed\n");
-        close(fd);
-        exit(98);
-    }
-
-    nread = read(fd, header, sizeof(Elf64_Ehdr));
-    if (nread == -1)
-    {
-        dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-        free(header);
-        close(fd);
-        exit(98);
-    }
-
-    class = ((unsigned char *)header)[EI_CLASS];
-
-    if (class == ELFCLASS32)
-    {
-        free(header);
-        header = malloc(sizeof(Elf32_Ehdr));
-        if (header == NULL)
-        {
-            dprintf(STDERR_FILENO, "Error: Memory allocation failed\n");
-            close(fd);
-            exit(98);
-        }
-
-        lseek(fd, 0, SEEK_SET);
-        nread = read(fd, header, sizeof(Elf32_Ehdr));
-        if (nread == -1)
-        {
-            dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
-            free(header);
-            close(fd);
-            exit(98);
-        }
-    }
-    else if (class != ELFCLASS64)
-    {
-        dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-        free(header);
-        close(fd);
-        exit(98);
-    }
-
-    print_elf_header(header, class);
-
-    free(header);
-    close(fd);
-    return (0);
-}
+#include <fcntl.h>
+#include <unistd.h>
+#include <elf.h>
+#include <string.h>
 
 void print_elf_header(void *header, int class)
 {
@@ -119,6 +43,9 @@ void print_elf_header(void *header, int class)
             break;
         case ELFOSABI_LINUX:
             printf("Linux\n");
+            break;
+        case ELFOSABI_SOLARIS:
+            printf("UNIX - Solaris\n");
             break;
         default:
             printf("<unknown: %x>\n", elf64_header->e_ident[EI_OSABI]);
@@ -166,6 +93,9 @@ void print_elf_header(void *header, int class)
         {
         case ELFOSABI_NETBSD:
             printf("UNIX - NetBSD\n");
+            break;
+        case ELFOSABI_SOLARIS:
+            printf("UNIX - Solaris\n");
             break;
         default:
             printf("<unknown: %x>\n", elf32_header->e_ident[EI_OSABI]);
